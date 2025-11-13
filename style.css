@@ -30,3 +30,27 @@ ol {
 }
 
 /**********************/
+
+/**
+
+#7C444F - rgb(124, 68, 79)
+#9F5255 - rgb(159, 82, 85)
+#E16A54 - rgb(225, 106, 84)
+#F39E60 - rgb(243, 158, 96)
+
+**/
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+#sidebar {
+    flex-basis: 120px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#content {
+    flex-grow: 1;
+}
