@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -55,11 +57,12 @@ body {
 
 #menu {
     height: 100%;
+    padding: 30px 0 30px 0;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 0 30px 0;
 }
 
 #menu-main {
@@ -75,4 +78,43 @@ body {
 
 #content {
     flex-grow: 1;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title > h1 {
+    align-self: flex-start;
+    border-bottom: 4px solid #F39E60;
+    padding: 0 20px 5px 0;
+    color: #505050;
+    font-family: "Libertinus Serif", serif;
+    font-weight: 400;
+}
+
+#title > button {
+    background-color: #F39E60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100px;
+    padding: 5px 0 5px 0;
+    border: none;
+    border-radius: 40px;
+}
+
+#title > button:hover {
+    box-shadow: 0 0 10px 0 #959595;
+}
+
+#add-icon {
+    fill: white;
+    width: 35px;
 }
