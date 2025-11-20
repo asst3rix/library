@@ -45,6 +45,7 @@ ol {
 body {
     display: flex;
     height: 100vh;
+    font-family: "Libertinus Serif", serif;
 }
 
 #sidebar {
@@ -95,7 +96,6 @@ body {
     border-bottom: 4px solid #F39E60;
     padding: 0 20px 5px 0;
     color: #505050;
-    font-family: "Libertinus Serif", serif;
     font-weight: 400;
 }
 
@@ -117,4 +117,50 @@ body {
 #add-icon {
     fill: white;
     width: 35px;
+}
+
+#books-list {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 15px;
+}
+
+.book-card > h2 {
+    font-weight: 600;
+}
+
+.book-read {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.is-read-button {
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    flex-basis: 45px;
+}
+
+.read {
+    color: #27ae60;
+    border-color: #27ae60;
+    box-shadow: 1px 1px 0px 1px #27ae60;
+}
+
+.not-read {
+    color: #e74c3c;
+    border-color: #e74c3c;
+    box-shadow: 1px 1px 0px 1px #e74c3c;
 }
