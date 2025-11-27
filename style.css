@@ -99,7 +99,7 @@ body {
     font-weight: 400;
 }
 
-#title > button {
+#add-button {
     background-color: #F39E60;
     display: flex;
     justify-content: center;
@@ -110,8 +110,17 @@ body {
     border-radius: 40px;
 }
 
-#title > button:hover {
+#add-button,
+form > button {
+    box-shadow: 0 0 10px 0 #d1d1d1;
+    transition: ease 0.5s;
+}
+
+#add-button:hover,
+form > button:hover {
+    cursor: pointer;
     box-shadow: 0 0 10px 0 #959595;
+    transition: ease 0.5s;
 }
 
 #add-icon {
@@ -147,20 +156,110 @@ body {
 
 .is-read-button {
     background-color: white;
-    padding: 5px 10px 5px 10px;
+    padding: 5px;
     border: 1px solid;
     border-radius: 10px;
     flex-basis: 45px;
+    font-family: "Libertinus Serif", serif;
+    font-size: 1em;
+}
+
+.is-read-button:hover {
+    cursor: pointer;
 }
 
 .read {
     color: #27ae60;
     border-color: #27ae60;
-    box-shadow: 1px 1px 0px 1px #27ae60;
+    box-shadow: 0 3px #27ae60;
+}
+
+.read:active {
+  box-shadow: 0 1px #27ae60;
+  transform: translateY(2px);
 }
 
 .not-read {
     color: #e74c3c;
     border-color: #e74c3c;
-    box-shadow: 1px 1px 0px 1px #e74c3c;
+    box-shadow: 0 3px #e74c3c;
+}
+
+.not-read:active {
+  box-shadow: 0 1px #e74c3c;
+  transform: translateY(2px);
+}
+
+dialog {
+    border: none;
+    border-radius: 10px;
+    padding: 0;
+}
+
+dialog > div {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+#close {
+    width: 25px;
+    fill: #F39E60;
+    transition: ease 0.5s;
+}
+
+#close:hover {
+    cursor: pointer;
+    fill: #7C444F;
+    transition: ease 0.5s;
+}
+
+::backdrop {
+    backdrop-filter: blur(3px);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 190px 350px;
+    gap: 20px;
+    padding: 60px 40px 60px 40px;
+    align-items: center;
+}
+
+input[type="text"] {
+    font-size: 1em;
+    font-family: "Libertinus Serif", serif;
+    padding: 10px 10px 10px 20px;
+    border: 1px solid #c9c9c9;
+    border-radius: 25px;
+    color: #4e4e4e;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    color: #7C444F;
+    border-color: #7C444F;
+    box-shadow: 0 0 10px 0 #d1d1d1;
+    transition: ease 0.5s;
+}
+
+form > div {
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+form > button {
+    grid-column: 1 / 3;
+    width: 150px; 
+    justify-self: center;
+    background-color: #F39E60;
+    font-size: 1em;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 0 5px 0;
 }
