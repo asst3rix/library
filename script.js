@@ -1,5 +1,16 @@
 const myLibrary = [];
 const booksList = document.querySelector("#books-list");
+const dialog = document.querySelector("dialog");
+const addButton = document.querySelector("#add-button");
+const closeButton = document.querySelector("#close");
+
+addButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});
 
 addBookToLibrary("The Fellowship of the Ring", "J.R.R Tolkien", "423", "Yes");
 addBookToLibrary("The Two Towers", "J.R.R Tolkien", "352", "Yes");
