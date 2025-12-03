@@ -228,16 +228,18 @@ form {
     align-items: center;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
     font-size: 1em;
     font-family: "Libertinus Serif", serif;
-    padding: 10px 10px 10px 20px;
+    padding: 10px 20px 10px 20px;
     border: 1px solid #c9c9c9;
     border-radius: 25px;
     color: #4e4e4e;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus {
     outline: none;
     color: #7C444F;
     border-color: #7C444F;
