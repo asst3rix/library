@@ -63,7 +63,7 @@ function addBookToLibrary(title, author, pages, isRead) {
 }
 
 function displayBooks() {
-    // Delete everything that could be here before starting showling the books.
+    // Delete everything that could be here before starting showing the books.
     booksList.innerHTML = '';
 
     for (let index = 0; index < myLibrary.length; index++) {
