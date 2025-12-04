@@ -1,8 +1,6 @@
 const myLibrary = [];
 const booksList = document.querySelector("#books-list");
 const dialog = document.querySelector("dialog");
-const addButton = document.querySelector("#add-button");
-const closeButton = document.querySelector("#close");
 const validationButton = document.querySelector("#validation-button");
 const titleInput = document.querySelector("#book-title");
 const authorInput = document.querySelector("#book-author");
@@ -15,10 +13,12 @@ addBookToLibrary("Vingt mille lieues sous les mers", "Jules Verne", "526", "0");
 
 displayBooks();
 
+const addButton = document.querySelector("#add-button");
 addButton.addEventListener("click", () => {
     dialog.showModal();
 });
 
+const closeButton = document.querySelector("#close");
 closeButton.addEventListener("click", () => {
     dialog.close();
 });
@@ -97,9 +97,21 @@ function displayBooks() {
         }
 
         bookRead.appendChild(readButton);
-
         bookCard.appendChild(bookDiv);
-        bookCard.appendChild(createSVG());
+
+        const deleteButton = createSVG(myLibrary[index].id);
+        // Use of a function instead of an arrow function to be able to use "this".
+        deleteButton.addEventListener("click", function () {
+            for (let index = 0; index < myLibrary.length; index++) {
+                const book2delete = this.dataset.id;
+                if (myLibrary[index].id === book2delete) {
+                    myLibrary.splice(index, 1);
+                }
+            }
+            displayBooks();
+        });
+
+        bookCard.appendChild(deleteButton);
     }
 }
 
@@ -115,14 +127,15 @@ function createTag(type, classs, text) {
     return tag;
 }
 
-function createSVG() {
+function createSVG(id) {
     const svgNS = "http://www.w3.org/2000/svg";
     const svgDelete = document.createElementNS(svgNS, "svg");
-    svgDelete.classList.add("delete-book");
+    svgDelete.classList.add("delete-button");
+    svgDelete.setAttribute("data-id", id)
     svgDelete.setAttribute("xmlns", svgNS);
     svgDelete.setAttribute("viewBox", "0 0 24 24");
     const titleElement = document.createElementNS(svgNS, "title");
-    titleElement.textContent = "delete";
+    titleElement.textContent = "Delete book";
     svgDelete.appendChild(titleElement);
     const pathElement = document.createElementNS(svgNS, "path");
     pathElement.setAttribute("d", "M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z");
