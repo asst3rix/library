@@ -167,6 +167,13 @@ form>button:hover {
     flex-basis: 15px;
     fill: #F39E60;
     align-self: flex-start;
+    transition: ease 0.5s;
+}
+
+.delete-book:hover {
+    cursor: pointer;
+    fill: #7C444F;
+    transition: ease 0.5s;
 }
 
 .book-read {
