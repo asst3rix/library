@@ -6,10 +6,10 @@ const titleInput = document.querySelector("#book-title");
 const authorInput = document.querySelector("#book-author");
 const pagesInput = document.querySelector("#book-pages");
 
-addBookToLibrary("The Fellowship of the Ring", "J.R.R Tolkien", "423", "1");
-addBookToLibrary("The Two Towers", "J.R.R Tolkien", "352", "1");
-addBookToLibrary("The Return of the King", "J.R.R Tolkien", "416", "1");
-addBookToLibrary("Vingt mille lieues sous les mers", "Jules Verne", "526", "0");
+addBookToLibrary("The Fellowship of the Ring", "J.R.R Tolkien", "423", true);
+addBookToLibrary("The Two Towers", "J.R.R Tolkien", "352", true);
+addBookToLibrary("The Return of the King", "J.R.R Tolkien", "416", true);
+addBookToLibrary("Vingt mille lieues sous les mers", "Jules Verne", "526", false);
 
 displayBooks();
 
@@ -47,14 +47,12 @@ function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-
-    if (isRead === "1") {
-        this.isRead = true;
-    } else {
-        this.isRead = false;
-    }
-
+    this.isRead = isRead;
     this.id = crypto.randomUUID();
+}
+
+Book.prototype.changeReadStatus = function() {
+    this.isRead = !this.isRead;
 }
 
 function addBookToLibrary(title, author, pages, isRead) {
@@ -88,7 +86,6 @@ function displayBooks() {
 
         const readButton = createTag("button", "is-read-button", "");
         readButton.dataset.id = myLibrary[index].id;
-
         if (myLibrary[index].isRead) {
             readButton.classList.add("read");
             readButton.textContent = "Yes";
@@ -99,17 +96,11 @@ function displayBooks() {
 
         // Use of a function instead of an arrow function to be able to use "this".
         readButton.addEventListener("click", function () {
-            if (this.textContent === "Yes") {
-                this.textContent = "No";
-                this.classList.remove("read");
-                this.classList.add("not-read");
-                updateReadStatus(this.dataset.id, false);
-            } else {
-                this.textContent = "Yes";
-                this.classList.remove("not-read");
-                this.classList.add("read");
-                updateReadStatus(this.dataset.id, true);
-            }
+            // The test b.id === this.dataset.id is going to be done for each books of the array until it finds the one.
+            // b here is the current book tested by the method find().
+            const book = myLibrary.find(b => b.id === this.dataset.id);
+            book.changeReadStatus();
+            displayBooks();
         });
 
         bookRead.appendChild(readButton);
@@ -157,13 +148,4 @@ function createSVG(id) {
     pathElement.setAttribute("d", "M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z");
     svgDelete.appendChild(pathElement);
     return svgDelete;
-}
-
-function updateReadStatus(id, status) {
-    for (let index = 0; index < myLibrary.length; index++) {
-        if (myLibrary[index].id === id) {
-            myLibrary[index].isRead = status;
-            break;
-        }
-    }
 }
