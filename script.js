@@ -6,6 +6,21 @@ const titleInput = document.querySelector("#book-title");
 const authorInput = document.querySelector("#book-author");
 const pagesInput = document.querySelector("#book-pages");
 
+// Book class.
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        this.id = crypto.randomUUID();
+    }
+
+    changeReadStatus() {
+        this.isRead = !this.isRead;
+    }
+}
+
 addBookToLibrary("The Fellowship of the Ring", "J.R.R Tolkien", "423", true);
 addBookToLibrary("The Two Towers", "J.R.R Tolkien", "352", true);
 addBookToLibrary("The Return of the King", "J.R.R Tolkien", "416", true);
@@ -41,19 +56,6 @@ validationButton.addEventListener("click", (event) => {
     dialog.close();
     displayBooks();
 });
-
-// Book constructor.
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.id = crypto.randomUUID();
-}
-
-Book.prototype.changeReadStatus = function() {
-    this.isRead = !this.isRead;
-}
 
 function addBookToLibrary(title, author, pages, isRead) {
     const newBook = new Book(title, author, pages, isRead);
